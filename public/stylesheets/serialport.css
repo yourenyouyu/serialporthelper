@@ -1,0 +1,163 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 660px;
+    position:relative;
+}
+#container{
+    width: 955px;
+    height: 600px;
+    background: #F6F6F6;
+    margin:20px auto ;
+    border-radius: 5px;
+    position: relative;
+    background:rgba(255,255,255,0.3);
+    box-shadow: 0px 0px 5px #177D58;
+}
+.nav{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 32px;
+    margin-left: 5px;
+}
+#title{
+    height: 45px;
+    width: 954px;
+    margin-left: 20px;
+    border-bottom: 1px solid black;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.ifError {
+    border: 1px solid #D72911
+}
+#option{
+    width: 200px;
+    height:535px;
+    border:1px solid gray;
+    border-radius: 5px;
+    background: white;
+    padding: 5px;
+    position:absolute;
+    bottom: 8px;
+    left: 15px;
+}
+#send{
+    border: 1px solid green;
+    border-radius: 5px;
+    width:480px;
+    height: 220px;
+    right: 15px;
+    bottom: 8px;
+    position: absolute;
+    padding: 5px 10px;
+    background: white;
+}
+#set_change{
+    position:absolute;
+    bottom:2px;
+    right: 20px;
+}
+.show_message{
+    width: 710px;
+    height: 310px;
+    position:absolute;
+    right: 15px;
+    top: 55px;
+    border:1px solid black;
+    border-radius: 5px;
+    background: rgba(246,246,246,0.7);
+    padding: 5px;
+}
+#message{
+    height: 265px;
+    width: 100%;
+    resize: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+}
+#logo{
+    height:30px;
+    width:30px;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
+#company_name{
+    position:absolute;
+    left: 40px;
+    top: -10px;
+    line-height: 45px;
+}
+#ser_operation{
+    position:absolute;
+    height: 40px;
+    width: 130px;
+    left: 15px;
+    bottom: 200px;
+    padding: auto 10px;
+}
+#read_file{
+    width: 200px;
+    height: 70px;
+    position:absolute;
+    left: 15px;
+    bottom: 120px;
+    border-top:1px solid black;
+    padding: 5px;
+}
+
+#ser_setting{
+    width: 215px;
+    height: 220px;
+    position:absolute;
+    bottom: 8px;
+    left: 230px;
+    border:1px solid black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+#serial_status{
+    height: 30px;
+    width: 30px;
+    position:absolute;
+    left: 130px;
+    bottom:5px;
+}
+#send_content{
+    height: 105px;
+    width: 100%;
+    resize: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    border: solid 1px #bbb;
+}
+.show_set{
+    height: 100px;
+    width: 400px;
+    position:absolute;
+    right: 20px;
+    top: 0px;
+}
+#clear_set{
+    position:absolute;
+    right: 30px;
+    margin: 3px;
+}
+
+#copyright{
+    height: 20px;
+    width: 476px;
+    position: absolute;
+    left: 450px;
+    bottom: 30px;
+}
