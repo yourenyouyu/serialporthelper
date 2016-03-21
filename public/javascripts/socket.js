@@ -1,4 +1,4 @@
-(function($,io){
+(function($,io,swal) {
 	$(function(){
 		window.openSuccess = false;
 		var socket = io.connect("localhost:8888");
@@ -32,7 +32,8 @@
 				if(window.openSuccess) {
 					var content = $.trim($('#send_content').val());
 					if(!content) {
-						alert("发送内容不得为空");
+						swal("发送内容不得为空");
+						$('#auto_send').val('no');
 						return;
 					}
 					socket.emit('autoSend', content);
@@ -43,7 +44,7 @@
 				}else {
 					// 如果端口没打开 告诉前端 打开端口
 					$('#auto_send').val('no');
-					alert('请打开串口');
+					swal("请打开串口");
 				}
 				/* 记得在页面中加一个dom元素 用来输入要发送的内容 */
 			}else {
@@ -56,7 +57,7 @@
 			if(window.openSuccess) {
 				var content = $.trim($('#send_content').val());
 				if(!content) {
-					alert("发送内容不得为空");
+					swal("发送内容不得为空");
 					return;
 				}
 				socket.emit('sendOnce', content);
@@ -64,7 +65,7 @@
 				$('#sendNum').val(sendNum);
 			}else {
 				// 如果端口没打开 告诉前端 打开端口
-				alert('请打开串口');
+				swal('请打开串口');
 				$('#auto_send').val('no');
 			}
 		})
@@ -74,7 +75,7 @@
 			var str = $('#serial_open_close').val();
 			if(str == '打开串口'){	
 				if($("#com_num").val()=="暂无可用端口"){
-					alert("没有设置端口");
+					swal("没有设置端口");
 					return;
 				};
 				var serial_info = {};
@@ -87,12 +88,11 @@
 				socket.emit("openSerial",serial_info);
 				
 				/*** 弹出正在打开端口的提示框 ***/
-			
+				swal("正在打开串口。。。","","info");
 			}else{
 
 				// 如果关闭串口就发送 关闭事件
 				socket.emit("closeSerial");
-
 				/*** 弹出正在关闭端口的提示框 ***/
 			}
 		});
@@ -118,7 +118,7 @@
 		})
 		socket.on("openSuccess",function() {
 			/*** 弹出打开端口成功的提示框 ***/
-			alert('端口打开成功');
+			swal('端口打开成功');
 			window.openSuccess = true;
 			// 改变按钮显示文字 与图片
 			$('#serial_open_close').val('关闭串口');
@@ -127,7 +127,7 @@
 
 		socket.on("openFail",function() {
 			/*** 弹出打开端口失败的提示框 ***/
-			alert("端口打开失败 有可能已经被占用");
+			swal("端口打开失败 有可能已经被占用");
 			window.openSuccess = false;
 			// 改变按钮显示文字 与图片
 			$('#serial_open_close').val('打开串口');
@@ -136,16 +136,19 @@
 		
 		socket.on("closeSuccess",function() {
 			/*** 弹出关闭端口成功的提示框 ***/
-			alert('端口关闭成功');
+			swal('端口关闭成功');
 			window.openSuccess = false;
 			// 改变按钮显示文字 与图片
 			$('#serial_open_close').val('打开串口');
 			$('#serial_status_image').attr('src','/images/serial_stop.png');	
+			clearInterval(time);
+			$('#auto_send').val('no');
+			socket.emit('cancelAutoSend');
 		})
 		
 		socket.on("closeFail",function(){
 			/*** 弹出关闭端口失败的提示框 ***/
-			alert('串口关闭失败');
+			swal('串口关闭失败');
 			window.openSuccess = true;
 			// 改变按钮显示文字 与图片
 		})
@@ -160,12 +163,12 @@
 		});
 
 		socket.on('sendFail', function() {
-			alert('发送失败');
+			swal('发送失败');
 		});
 		
 		socket.on('sendSuccess', function() {
-			// alert('发送成功');
+			// swal('发送成功');
 		});
 
 	})
-})($,io);
+})($,io,swal);
